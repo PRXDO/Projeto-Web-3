@@ -1,15 +1,15 @@
-const mongoose = require('mongoose');
+const mongoose = require('../database');
 
-const post = new mongoose.Schema({
+const PostSchema = new mongoose.Schema({
   nome: {
     type: String,
-    required: true,
+    require: true,
     unique: true,
   },
   urlImg: {
     type: String,
-    required: true,
+    require: true,
   },
 });
 
-module.exports = mongoose.model('post', post);
+module.exports = mongoose.model('Post', PostSchema);

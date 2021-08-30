@@ -1,24 +1,25 @@
-const mongoose = require('mongoose');
+const mongoose = require('../database');
 
-const novoUsuario = new mongoose.Schema({
+const UsuarioSchema = new mongoose.Schema({
   login: {
-    typer: String,
-    required: true,
+    type: String,
+    require: true,
     unique: true,
   },
 
   email: {
-    typer: String,
-    required: true,
+    type: String,
+    require: true,
     unique: true,
     lowercase: true,
   },
 
   senha: {
-    typer: String,
-    required: true,
+    type: String,
+    require: true,
     select: false,
   },
 });
 
-module.exports = mongoose.nmodel('usuario'.novoUsuario);
+const Usuario = mongoose.model('Usuario', UsuarioSchema);
+module.exports = Usuario;

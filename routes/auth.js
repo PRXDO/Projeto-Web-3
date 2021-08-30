@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const usuario = require('../model/usuario');
+const Usuario = require('../model/Usuario');
 
 const bcrypt = require('bcryptjs');
 
@@ -9,7 +9,7 @@ const acesstoken = 'token';
 router.get('/login', async (req, res) => {
     const {email, senha } = req.query;
 
-    const usuario = await usuario.findOne({ email }).lean();
+    const usuario = await Usuario.findOne({ email }).lean();
 
     if (!usuario) {
         res.status(201).json({
@@ -32,7 +32,7 @@ router.post('/cadastro', async (req, res)=>{ //Authenticate usuario
     const senha = await bcrypt.hash(plainTextsenha, 10)
 
     try{
-        const response = await usuario.create({email, senha})
+        const response = await Usuario.create({email, senha})
         console.log(response)
     } catch(error) {
         if(error.code === 11000){
